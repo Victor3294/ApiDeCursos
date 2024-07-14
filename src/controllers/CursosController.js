@@ -75,6 +75,20 @@ class CursosController {
             response.status(500).json({mensagem: "Não foi possivel atualizar o curso"})
         }
     }
+
+    async deletarCurso (request, response) {
+        try {
+            const id = request.params.id
+            const curso = await Curso.findByPk(id)
+            if(!curso) {
+                return response.status(404).json({mensagem: "Curso não encontrado"})
+            }
+            await curso.destroy()
+            response.status(204).json()
+        } catch (error) {
+            response.status(500).json({mensagem: "Não foi possivel deletar o curso"})
+        }
+    }
 }
 
 module.exports = new CursosController()
