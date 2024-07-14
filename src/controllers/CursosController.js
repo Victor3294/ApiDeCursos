@@ -1,3 +1,4 @@
+const { Op } = require("sequelize")
 const Curso = require("../models/Curso")
 
 class CursosController {
@@ -20,6 +21,39 @@ class CursosController {
             response.status(200).json(cursos)
         } catch (error) {
             response.status(500).json({mensagem: "Não foi possivel realizar a busca"})
+        }
+    }
+
+    async buscarCursos (request, response) {
+        try {
+            const dados = request.query
+            let conditions = [];
+
+            if (dados.nome !== undefined && dados.duracao !== undefined) {
+                conditions ={ [Op.and] : [{
+                    nome: {[Op.like]: `%${dados.nome}%`}
+                },
+                { duracao: { [Op.eq]: dados.duracao } }
+                ]};
+            } else if (dados.nome !== undefined) {
+                conditions = 
+                    {nome: {[Op.like]: `%${dados.nome}%`}}
+                ;
+            } else if (dados.duracao !== undefined) {
+                conditions = 
+                { duracao: { [Op.eq]: dados.duracao } }
+                ;
+            }
+                const cursos = await Curso.findAll({
+                    where: conditions
+                })
+                if(cursos.length === 0){
+                    return response.status(404).json({mensagem:"Nome e duração não encontrados"})
+                }
+                response.status(200).json(cursos)
+        } catch (error) {
+            response.status(500).json({mensagem:"Não foi possivel realizar a busca"})
+            console.log(error)
         }
     }
 }

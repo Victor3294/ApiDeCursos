@@ -5,5 +5,6 @@ const cursosRoutes = new Router()
 
 cursosRoutes.post('/', CursosController.criar)
 cursosRoutes.get('/', CursosController.listarTodos)
+cursosRoutes.get('/l', CursosController.buscarCursos)
 
 module.exports = cursosRoutes
