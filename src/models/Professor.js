@@ -16,3 +16,5 @@ const Professor = connection.define('professores', {
         type: DataTypes.STRING(40)
     }
 })
+
+module.exports = Professor
