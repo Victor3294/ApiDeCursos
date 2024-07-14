@@ -39,6 +39,19 @@ class ProfessoresController {
             response.status(500).json({mensagem: "Não foi possivel realizar a busca"})
         }
     }
+
+    async listarUm (request, response) {
+        try {
+            const id = request.params.id
+            const professor = await Professor.findByPk(id)
+            if(!professor) {
+                return response.status(404).json({mensagem: "Não foi encontrado um professor com esse id"})
+            }
+            response.status(200).json(professor)
+        } catch (error) {
+            response.status(500).json({mensagem: "Não foi possivel realizar a busca"})
+        }
+    }
 }
 
 module.exports = new ProfessoresController()
