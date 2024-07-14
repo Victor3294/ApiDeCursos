@@ -30,6 +30,15 @@ class ProfessoresController {
             console.log(error)
         }
     }
+
+    async listarTodos (request, response) {
+        try {
+            const professores = await Professor.findAll()
+            response.status(200).json(professores)
+        } catch (error) {
+            response.status(500).json({mensagem: "Não foi possivel realizar a busca"})
+        }
+    }
 }
 
 module.exports = new ProfessoresController()
