@@ -6,5 +6,6 @@ professoresRoutes.post('/', ProfessoresController.criar)
 professoresRoutes.get('/', ProfessoresController.listarTodos)
 professoresRoutes.get('/:id', ProfessoresController.listarUm)
 professoresRoutes.delete('/:id', ProfessoresController.excluir)
+professoresRoutes.put('/:id', ProfessoresController.atualizar)
 
 module.exports = professoresRoutes
