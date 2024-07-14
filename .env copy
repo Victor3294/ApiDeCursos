@@ -4,5 +4,5 @@ DB_HOST=Seu-host-do-banco-de-dados
 DB_USER=Seu-usuario-do-banco-de-dados
 DB_PASSWORD=Sua-senha-do-banco-de-dados
 DB_DIALECT=Sua-IDE-do-banco-de-dados
-DB_NAME=Nome-da-sua-database
+DB_DATABASE=Nome-da-sua-database
 SECRET_JWT=SECRET_JWT
